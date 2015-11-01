@@ -7,7 +7,7 @@ def plot1():
 
 @app.route('/plot2')
 def plot2():
-    return render_template('plot1.html')
+    return render_template('plot2.html')
 
 if __name__ == "__main__":
     app.run(port= 33507)
