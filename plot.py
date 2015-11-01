@@ -4,8 +4,13 @@ import pandas as pd
 from bokeh.io import output_file, show,vplot
 from bokeh.charts import Bar
 from bokeh.plotting import figure
+from bokeh.embed import components 
 from bokeh.models import PrintfTickFormatter
+from jinja2 import Template
+import webbrowser
 import datetime
+import os 
+import six
 
 
 overprice_count = pickle.load(open('overprice_count.p','r'))
@@ -20,8 +25,6 @@ cities = ['San Mateo','Redwood City','Palo Alto',\
 
 TOOLS = "pan,wheel_zoom,box_zoom,reset,save"
 FLAT_COLORS = ['#3498db','#8e44ad','#e67e22','#c0392b','#2ecc71','#1abc9c','#34495e','#f1c40f','#f1a9a0','#43353d','#888888','#9e906e']
-
-output_file("plots.html", title="correlation.py example")
 
 #plot1
 p1 = figure(width=850,\
@@ -58,5 +61,32 @@ p2 = Bar(df,label = 'city',\
 		 ylabel = 'Number of Houses',
 		 width = 800)
 
-p = vplot(p1,p2)
-show(p)
+plots = {1:p1,2:p2}
+for i,p in plots.items():
+	script, div = components(p)
+	template = Template('''<!DOCTYPE html>
+	<html>
+	  <head>
+	    <link rel="stylesheet" href="http://cdn.pydata.org/bokeh/release/bokeh-0.9.2.min.css" type="text/css" />
+	    <script type="text/javascript" src="http://cdn.pydata.org/bokeh/release/bokeh-0.9.2.min.js"></script>
+	    {{ script | safe }}
+	  </head>
+	  <body>
+	    <div class=page>
+	      <h1>Zillow-House-Research Project Plot {{i}}</h1>
+	      {{ div | safe }}
+	    </div>
+	  </body>
+	</html>
+	''')
+
+	html_file = 'plot%d.html'%(i)
+	with open(html_file, 'w') as textfile:
+	    textfile.write(template.render(script=script, div=div,i=i))
+
+#url = 'file:{}'.format(six.moves.urllib.request.pathname2url(os.path.abspath(html_file)))
+#webbrowser.open(url)
+
+# if __name__=="__main__":
+# 	app.run(port=33507)
+
