@@ -88,7 +88,9 @@ def price_by_year(path,cities):
 if __name__ == "__main__":
 	cities = ['San Mateo','Redwood City','Palo Alto',\
 			  'Mountain View','Santa Clara','San Jose',\
-			  'Milpitas','Fremont']
+			  'Milpitas','Fremont','Menlo Park',\
+			  'Sunnyvale','Cupertino']
+			  
 	path = "results_MajorCity.json"
 	overprice_count,underprice_count = price_count(path,cities)	
 	median_price = price_by_year(path,cities)
