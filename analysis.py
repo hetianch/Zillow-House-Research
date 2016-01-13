@@ -1,3 +1,7 @@
+"""
+This script is deprecated. 
+json data scraped from Zillow are processed by Hadoop/MapReduce through mapper.py and reducer.py files.
+"""
 import json
 import pickle
 import numpy as np
