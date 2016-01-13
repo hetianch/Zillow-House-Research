@@ -1,6 +1,12 @@
 ##Zillow House Research Proposal
 > Hetian Chen, Oct 31 2015
 
+###Technology/Packages
+* Hadoop/MapReduce
+* Flask
+* Bokeh
+* BeautifulSoup
+
 ###Motivation
 Buying a house is a once-in-a-lifetime investment for many people. A good house not only make a comfortable home but also increase the value of your property over time. Location, Convenience, Safety, Education, Affordability, etc. -- there're too many factors to consider, which make the decision really hard. You need advice, you need information, you need checks and balances. That's the reason why Real Estate Websites like Zillow, Trulia, Redfin, etc. are becoming more and more popular. We can find detailed information about one house, but what we may also care about is the big picture: can we buy a similar house with cheaper price at another city? Is it a good time to buy a house now or next year? Are the houses in this city more likely to be over-priced than the nearby cities? To answer these questions, information of one house is not enough. We want a more horizontal comparision, we want to put houses in cities, and cities in counties.  
 
